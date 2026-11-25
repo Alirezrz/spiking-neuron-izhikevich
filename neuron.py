@@ -13,7 +13,7 @@ I : input current
 
 
 v[t] = v[t-1] + dt * (0.04*v[t-1]^2 + 5*v[t-1] + 140 - u[t-1] + I[t])
-u[t] = u[t-1] + dt * a * (b*v[t] - u[t-1]
+u[t] = u[t-1] + dt * a * (b*v[t] - u[t-1])
 
 
 spikes:
