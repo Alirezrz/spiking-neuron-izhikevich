@@ -11,7 +11,7 @@ from pymonntorch import *
 
 class ConstantCurrent( Behavior):
     def initialize(self, neurons):
-        self.I=self.parameters("I",10)
+        self.I=self.parameter("I",10)
         neurons.I=neurons.vector(mode=self.I)
     
     def forward(self,neurons):
@@ -23,27 +23,43 @@ class ConstantCurrent( Behavior):
 class StepCurrent(Behavior):
     
     def initialize(self, neurons):
-        self.I=self.parameters("I",10.0)
+        self.I=self.parameter("I",10.0)
         
-        self.start=self.parameters("t_start",0.0)
+        self.start=self.parameter("t_start",0.0)
         
         neurons.I=neurons.vector(mode=0.0)
         
         
         
     def forward(self,neurons):
-        t = neurons.network.iterations *neurons.network.dt
+        t = neurons.network.iteration *neurons.network.dt
         neurons.I=neurons.vector(mode=self.I if t >= self.start else 0.0)    
         
         
-class NoisyCurrent( Behavior):
+
+class NoisyCurrent(Behavior):
+
     def initialize(self, neurons):
-        self.I=self.parameters("I",10)
-        self.noise_std=self.parameters("noise_std",1.0)
-        neurons.I=neurons.vector(mode=self.I)
-    
+        self.I = self.parameter("I", 10.0)
+        self.noise_std = self.parameter("noise_std", 1.0)
+        neurons.I = neurons.vector(mode=self.I)
+
     def forward(self, neurons):
-        noise = self.noise_std * torch.randn(neurons.size)
-        neurons.I = neurons.vector(mode=self.I_value)+noise
-            
+        base = neurons.vector(mode=self.I)
+        neurons.I = base + self.noise_std * torch.randn_like(base)
           
+          
+class PiecewiseCurrent(Behavior):
+
+    def initialize(self, neurons):
+        schedule = self.parameter("schedule", [(0, 0.0)])
+        self.schedule = sorted(schedule, key=lambda s: s[0])
+        neurons.I = neurons.vector(mode=float(self.schedule[0][1]))
+
+    def forward(self, neurons):
+        t = neurons.network.iteration * neurons.network.dt
+        value = self.schedule[0][1]
+        for t_start, val in self.schedule:
+            if t >= t_start:
+                value = val
+        neurons.I = neurons.vector(mode=float(value))
