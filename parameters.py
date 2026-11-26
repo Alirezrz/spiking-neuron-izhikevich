@@ -31,8 +31,8 @@ PATTERNS = {
 
     "TC_tonic": dict(
         name="thalamo-cortical (tonic)",
-        a=0.02, b=0.25, c=-65, d=0.05, v_init=-63,
-        T=200, schedule=[(0, 0), (20, 10)]),
+        a=0.02, b=0.25, c=-65, d=0.05, v_init=-64.41,
+        T=200, schedule=[(0, 0), (20, 1.5)]),
 
     
     "TC_rebound": dict(
