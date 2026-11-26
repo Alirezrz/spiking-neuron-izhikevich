@@ -42,6 +42,17 @@ PATTERNS = {
 
     "RZ": dict(
         name="resonator",
-        a=0.1, b=0.26, c=-65, d=2, v_init=-62.5,
+        a=0.1, b=0.26, c=-65, d=2, v_init=-65,
         T=200, schedule=[(0, 0), (10, 0.2), (97, 1), (102, 0.2)]),
+}
+
+#  RS with low / medium / high step currents
+STEP_LEVELS = {"low": 4, "medium": 10, "high": 40}
+
+STEP_PATTERNS = {
+    f"RS_{level}": {**PATTERNS["RS"],
+                    "name": f"regular spiking, I={I} ({level})",
+                    "T": 300,
+                    "schedule": [(0, 0), (20, I)]}
+    for level, I in STEP_LEVELS.items()
 }
