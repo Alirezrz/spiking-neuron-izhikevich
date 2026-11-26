@@ -49,7 +49,7 @@ class NoisyCurrent(Behavior):
         neurons.I = base + self.noise_std * torch.randn_like(base)
           
           
-class PiecewiseCurrent(Behavior):
+class ScheduledCurrent(Behavior):
 
     def initialize(self, neurons):
         schedule = self.parameter("schedule", [(0, 0.0)])
