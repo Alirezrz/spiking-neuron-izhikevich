@@ -25,8 +25,8 @@ class StepSweepCurrent(Behavior):
 
 def simulate_step(p, I_values, T=500, t_on=50, dt=0.1):
     from pymonntorch import Network, NeuronGroup, Recorder
-    from network import TimeResolution
-    from neuron import Izhikevich
+    from .network import TimeResolution
+    from .neuron import Izhikevich
 
     net = Network(behavior={1: TimeResolution(dt=dt)})
     ng = NeuronGroup(

@@ -51,8 +51,8 @@ class OUNoisyCurrent(Behavior):
 def run_noisy(p, I_base, noise_std, T=500, dt=0.1, seed=0, noise="ou", tau=10.0):
     """Return t, v, u, I (the recorded, noisy current) for one neuron."""
     from pymonntorch import Network, NeuronGroup, Recorder
-    from network import TimeResolution
-    from neuron import Izhikevich
+    from .network import TimeResolution
+    from .neuron import Izhikevich
 
     if noise == "ou":
         current = OUNoisyCurrent(I=I_base, noise_std=noise_std, tau=tau)

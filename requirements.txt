@@ -1,0 +1,5 @@
+pymonntorch
+torch
+numpy
+matplotlib
+jupyter

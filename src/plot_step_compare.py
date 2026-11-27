@@ -73,7 +73,7 @@ def plot_step_stacked(step_patterns, run_fn, title=None,colors=("#0072B2", "#E69
 
 def plot_step_and_FI(step_patterns, run_fn, p, name="RS", currents=None,T=1000, t_on=100,colors=("#0072B2", "#E69F00", "#D55E00"), clip=True):
     
-    import step_current as sc
+    from . import step_current as sc
 
     items = list(step_patterns.items())
     n = len(items)
