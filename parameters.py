@@ -42,8 +42,9 @@ PATTERNS = {
 
     "RZ": dict(
         name="resonator",
-        a=0.1, b=0.26, c=-65, d=2, v_init=-65,
+        a=0.1, b=0.26, c=-65, d=2, v_init=-62.5,
         T=200, schedule=[(0, 0), (10, 0.2), (97, 1), (102, 0.2)]),
+
 }
 
 #  RS with low / medium / high step currents

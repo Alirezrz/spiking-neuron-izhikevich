@@ -2,9 +2,9 @@ from pymonntorch import *
 
 """
 a :time scale of u (small = slow recovery)
-# b :sensitivity of u to subthreshold v (large = subthreshold oscillations, low-threshold spiking)
-# c :after-spike reset value of v
-# d :after-spike jump of u (large = strong adaptation)
+b :sensitivity of u to subthreshold v (large = subthreshold oscillations, low-threshold spiking)
+c :after-spike reset value of v
+d :after-spike jump of u (large = strong adaptation)
 
 
 v :membrane potential (mV), fast variable
