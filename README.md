@@ -9,7 +9,7 @@ $$u' = a(bv - u)$$
 
 with after-spike resetting:
 
-$$\text{if } v \ge 30\text{ mV}, \quad \text{then } \begin{cases} v \leftarrow c \\ u \leftarrow u + d \end{cases}$$
+$$\text{if } v \ge 30\text{ mV}, \quad \text{then } \begin{cases} v \leftarrow c \\ & u \leftarrow u + d \end{cases}$$
 
 ## Experiments & Features
 
